@@ -1,0 +1,103 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+
+      google.charts.load('current', {'packages':['corechart']});
+
+      google.charts.setOnLoadCallback(drawViewsChart);
+
+
+      google.charts.setOnLoadCallback(drawapplicationsChart);
+
+
+      function drawViewsChart() {
+
+   var data = google.visualization.arrayToDataTable([
+          ['Role','Desktop','Mobile'],
+          ['Planning-Coordinator',40,92],
+['Community-Development-Officer',81,154],
+['Team-Leader-Education-and-Care-Centre-Based',22,45],
+['Lead-Educator',0,1],
+['GIS-Assets-Officer',20,7],
+['Building-and-Health-Coordinator',13,12],
+['Relief-School-Crossing-Supervisor',16,40],
+['Relief-Cleaners-Moyne-Shire-Caravan-Parks',40,46],
+['Strategic-Planner',47,62],
+['Accountant',82,184],
+['Temporary-Plant-Operators',82,225],
+['Activity-Group-Leader-Koroit-after-kindergarten-care',8,38],
+['MCHN',33,25],
+['Open-Space-Plant-Operator',51,125],
+['Communications-Officer',71,197],
+['Executive-Leadership-Team-Assistants',52,114],
+['Corporate-Events-and-Marketing-Officer',17,18],
+['MCH-Family-Support-Practitioner',3,4],
+['Visitor-Services-Officer',5,2],
+['Casual-Pool-Administration-Support-Officers',56,75],
+['Relief-Community-Care-Workers',48,117],
+['Relief-Early-Childhood-Educators',45,86]
+        ]);
+
+        var options = {
+          title : 'Views of roles by device',
+          vAxis: {title: 'Views'},
+          hAxis: {title: 'Role'},
+          seriesType: 'bars',
+      colors: ['red', 'blue']
+        };
+    
+    var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+        var chart = new google.visualization.ComboChart(document.getElementById('Views_chart_div'));
+        chart.draw(data, options);
+      }
+
+
+      function drawapplicationsChart() {
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Device');
+        data.addColumn('number', 'Applications');
+        data.addRows([
+          ['Desktop', 80],
+          ['Mobile', 6]
+        ]);
+
+        var options = {title:'All job applications by device',
+                       width:800,
+                       height:600,
+            slices: [{color: 'red'}, {color: 'blue'}]
+            };
+
+
+        var chart = new google.visualization.PieChart(document.getElementById('applications_chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+	  <h1>What devices do our applicants use?</h1>
+	  <p>Applications using the OpenForms online application process on our website are made overwhelmingly on desktop computers.</p>
+	  
+	   <p>When people view the individual job role pages this is statistic is reversed (67 percent mobile to 33 percent desktop.</p>
+	  
+	  <p>(Statistics are from the last three months)</p>
+    <div id="applications_chart_div" style="width: 1200px; height: 500px;"></div>
+	 
+	 
+
+    <div id="Views_chart_div" style="width: 1200px; height: 500px;"></div>
+        
+  
+  </body>
+</html>
+
+
